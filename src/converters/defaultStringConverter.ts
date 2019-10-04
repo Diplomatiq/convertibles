@@ -1,5 +1,6 @@
 import { Base64UrlTransformer } from '../interfaces/base64UrlTransformer';
 import { BinaryConverter } from '../interfaces/binaryConverter';
+import { StringConverter } from '../interfaces/stringConverter';
 import { Utf8Decoder } from '../interfaces/utf8Decoder';
 import { Utf8Encoder } from '../interfaces/utf8Encoder';
 import { DefaultBase64UrlTransformer } from '../transformers/defaultBase64UrlTransformer';
@@ -10,7 +11,7 @@ enum StringConverterErrorCodes {
     BASE64_DECODE_ERROR = 'Base64 decode error',
 }
 
-export class DefaultStringConverter {
+export class DefaultStringConverter implements StringConverter {
     private static readonly ERROR_CODES = StringConverterErrorCodes;
 
     public constructor(
