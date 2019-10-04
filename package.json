@@ -6,7 +6,7 @@
   "module": "dist/main.js",
   "types": "dist/main.d.ts",
   "engines": {
-    "node": ">=9.0.0"
+    "node": ">=11.0.0"
   },
   "scripts": {
     "build": "tsc",
