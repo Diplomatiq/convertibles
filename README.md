@@ -95,8 +95,8 @@ Currently the following source formats are supported.
 
 | Source format  | to/from Uint8Array | to/from Base64     | to/from Base64URL  | to/from hex        |
 | -------------- | ------------------ | ------------------ | ------------------ | ------------------ |
-| Unicode string | :heavy-check-mark: | :heavy-check-mark: | :heavy-check-mark: | :x: \*             |
-| Uint8Array     | :heavy_minus_sign: | :heavy-check-mark: | :heavy-check-mark: | :heavy-check-mark: |
+| Unicode string | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :x: \*             |
+| Uint8Array     | :heavy_minus_sign: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
 
 \* Of course, no one stops you from converting a Unicode string into a Uint8Array, then to hex.
 
