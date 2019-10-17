@@ -325,6 +325,28 @@ encodeToBase64Url(bytes: Uint8Array): string;
 decodeFromBase64Url(base64Url: string): Uint8Array;
 ```
 
+### DefaultBase64UrlTransformer
+
+#### transformBase64ToBase64Url(base64: string): string;
+
+```
+/**
+ * Transforms a Base64 representation to Base64URL.
+ * Symmetric to @member transformBase64UrlToBase64.
+ */
+transformBase64ToBase64Url(base64: string): string;
+```
+
+#### transformBase64UrlToBase64(base64Url: string): string;
+
+```
+/**
+ * Transforms a Base64URL representation to Base64.
+ * Symmetric to @member transformBase64ToBase64Url.
+ */
+transformBase64UrlToBase64(base64Url: string): string;
+```
+
 ## Development
 
 See [CONTRIBUTING.md](https://github.com/Diplomatiq/convertibles/blob/develop/CONTRIBUTING.md) for details.
