@@ -1,6 +1,6 @@
 {
   "name": "@diplomatiq/convertibles",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "TypeScript utility library to convert values between textual and binary representation.",
   "main": "dist/main.js",
   "module": "dist/main.js",
