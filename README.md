@@ -45,7 +45,7 @@ TypeScript utility library to convert values between textual and binary represen
 	<img src="https://sonarcloud.io/api/project_badges/measure?project=Diplomatiq_convertibles&metric=security_rating" alt="Security Rating">
 </a>
 
-<a href="https://github.com/Diplomatiq/convertibles/pulls?utf8=✓&q=is%3Apr+is%3Aclosed+label%3Adependabot" target="_blank" style="text-decoration: none;">
+<a href="https://github.com/Diplomatiq/convertibles/pulls" target="_blank" style="text-decoration: none;">
 	<img src="https://api.dependabot.com/badges/status?host=github&repo=Diplomatiq/convertibles" alt="Dependabot">
 </a>
 </p>
