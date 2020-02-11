@@ -51,7 +51,7 @@ TypeScript utility library to convert values between textual and binary represen
 </p>
 
 <p>
-<a href="https://gitter.im/Diplomatiq/convertibles?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge" target="_blank" style="text-decoration: none;">
+<a href="https://gitter.im/Diplomatiq/convertibles" target="_blank" style="text-decoration: none;">
 	<img src="https://badges.gitter.im/Diplomatiq/convertibles.svg" alt="Gitter">
 </a>
 </p>
@@ -62,7 +62,7 @@ TypeScript utility library to convert values between textual and binary represen
 
 Being an npm package, you can install convertibles with the following command:
 
-```
+```bash
 npm install -P @diplomatiq/convertibles
 ```
 
@@ -70,7 +70,7 @@ npm install -P @diplomatiq/convertibles
 
 Run tests with the following:
 
-```
+```bash
 npm test
 ```
 
@@ -115,27 +115,27 @@ Besides converters, there are transformers, which does not really convert, but r
 
 After installation, import the appropriate class into your project, and use its API after instantiation:
 
-```
+```typescript
 import { DefaultStringConverter } from '@diplomatiq/convertibles';
 
 // …
 
 function main() {
-  const source = 'Dįplőmàtiq Å & Å is eﬀective.';
+    const source = 'Dįplőmàtiq Å & Å is eﬀective.';
 
-  const stringConverter = new DefaultStringConverter();
+    const stringConverter = new DefaultStringConverter();
 
-  const asBytes = stringConverter.encodeToBytes(source);
-  console.log(asBytes); // Uint8Array(41) [68, 105, 204, …]
-  console.log(stringConverter.decodeFromBytes(asBytes)); // 'Dįplőmàtiq Å & Å is eﬀective.'
+    const asBytes = stringConverter.encodeToBytes(source);
+    console.log(asBytes); // Uint8Array(41) [68, 105, 204, …]
+    console.log(stringConverter.decodeFromBytes(asBytes)); // 'Dįplőmàtiq Å & Å is eﬀective.'
 
-  const asBase64 = stringConverter.encodeToBase64(source);
-  console.log(asBase64); // 'RGnMqHBsb8yLbWHMgHRpcSBBzIogJiBBzIogaXMgZe+sgGVjdGl2ZS4='
-  console.log(stringConverter.decodeFromBase64(asBase64)); // 'Dįplőmàtiq Å & Å is eﬀective.'
+    const asBase64 = stringConverter.encodeToBase64(source);
+    console.log(asBase64); // 'RGnMqHBsb8yLbWHMgHRpcSBBzIogJiBBzIogaXMgZe+sgGVjdGl2ZS4='
+    console.log(stringConverter.decodeFromBase64(asBase64)); // 'Dįplőmàtiq Å & Å is eﬀective.'
 
-  const asBase64Url = stringConverter.encodeToBase64Url(source);
-  console.log(asBase64Url); // 'RGnMqHBsb8yLbWHMgHRpcSBBzIogJiBBzIogaXMgZe-sgGVjdGl2ZS4'
-  console.log(stringConverter.decodeFromBase64Url(asBase64Url)); // 'Dįplőmàtiq Å & Å is eﬀective.'
+    const asBase64Url = stringConverter.encodeToBase64Url(source);
+    console.log(asBase64Url); // 'RGnMqHBsb8yLbWHMgHRpcSBBzIogJiBBzIogaXMgZe-sgGVjdGl2ZS4'
+    console.log(stringConverter.decodeFromBase64Url(asBase64Url)); // 'Dįplőmàtiq Å & Å is eﬀective.'
 }
 ```
 
@@ -147,7 +147,7 @@ function main() {
 
 You can inject your own UTF-8 encoder/decoder, binary converter, or Base64URL transformer, as long as they implement the required interfaces.
 
-```
+```typescript
 constructor(
   private readonly utf8Encoder: Utf8Encoder = new TextEncoder(),
   private readonly utf8Decoder: Utf8Decoder = new TextDecoder('utf-8', { fatal: true }),
@@ -158,13 +158,13 @@ constructor(
 
 Instantiated without constructor parameters, `DefaultStringConverter` will use the defaults:
 
-```
+```typescript
 const stringConverter = new DefaultStringConverter();
 ```
 
 #### encodeToBytes(string: string): Uint8Array;
 
-```
+```typescript
 /**
  * Encodes a Unicode string into UTF-8 binary representation.
  * Symmetric to @member decodeFromBytes.
@@ -175,7 +175,7 @@ encodeToBytes(string: string): Uint8Array;
 
 #### decodeFromBytes(bytes: Uint8Array): string;
 
-```
+```typescript
 /**
  * Decodes the UTF-8 binary representation of a Unicode string.
  * Symmetric to @member encodeToBytes.
@@ -186,7 +186,7 @@ decodeFromBytes(bytes: Uint8Array): string;
 
 #### encodeToBase64(string: string): string;
 
-```
+```typescript
 /**
  * Encodes a Unicode string into Base64.
  * Symmetric to @member decodeFromBase64.
@@ -207,7 +207,7 @@ encodeToBase64(string: string): string;
 
 #### decodeFromBase64(base64: string): string;
 
-```
+```typescript
 /**
  * Decodes a Base64-encoded Unicode string.
  * Symmetric to @member encodeToBase64.
@@ -229,7 +229,7 @@ decodeFromBase64(base64: string): string;
 
 #### encodeToBase64Url(string: string): string;
 
-```
+```typescript
 /**
  * Encodes a Unicode string into (URL- and filename-safe) Base64URL format.
  * Symmetric to @member decodeFromBase64Url.
@@ -240,7 +240,7 @@ encodeToBase64Url(string: string): string;
 
 #### decodeFromBase64Url(base64url: string): string;
 
-```
+```typescript
 /**
  * Decodes a (URL- and filename-safe) Base64URL-encoded Unicode string.
  * Symmetric to @member encodeToBase64Url.
@@ -255,7 +255,7 @@ decodeFromBase64Url(base64url: string): string;
 
 You can inject your own Base64URL transformer, as long as it implements the required interface.
 
-```
+```typescript
 constructor(
   private readonly base64UrlTransformer: Base64UrlTransformer = new DefaultBase64UrlTransformer(),
 ) {}
@@ -263,13 +263,13 @@ constructor(
 
 Instantiated without constructor parameters, `DefaultBinaryConverter` will use the defaults:
 
-```
+```typescript
 const binaryConverter = new DefaultBinaryConverter();
 ```
 
 #### encodeToHex(bytes: Uint8Array): string;
 
-```
+```typescript
 /**
  * Encodes a binary representation into a hexadecimal string.
  * Does not throw.
@@ -279,7 +279,7 @@ encodeToHex(bytes: Uint8Array): string;
 
 #### decodeFromHex(hex: string): Uint8Array;
 
-```
+```typescript
 /**
  * Decodes a hexadecimal string into a binary representation.
  * Throws if decoding is unsuccessful.
@@ -289,7 +289,7 @@ decodeFromHex(hex: string): Uint8Array;
 
 #### encodeToBase64(bytes: Uint8Array): string;
 
-```
+```typescript
 /**
  * Encodes a binary representation into Base64 format.
  * Does not throw.
@@ -299,7 +299,7 @@ encodeToBase64(bytes: Uint8Array): string;
 
 #### decodeFromBase64(base64: string): Uint8Array;
 
-```
+```typescript
 /**
  * Decodes a Base64-encoded binary representation.
  * Throws if decoding is unsuccessful.
@@ -309,7 +309,7 @@ decodeFromBase64(base64: string): Uint8Array;
 
 #### encodeToBase64Url(bytes: Uint8Array): string;
 
-```
+```typescript
 /**
  * Encodes a binary representation into (URL- and filename-safe) Base64URL format.
  */
@@ -318,7 +318,7 @@ encodeToBase64Url(bytes: Uint8Array): string;
 
 #### decodeFromBase64Url(base64Url: string): Uint8Array;
 
-```
+```typescript
 /**
  * Decodes a (URL- and filename-safe) Base64URL-encoded binary representation.
  */
@@ -329,7 +329,7 @@ decodeFromBase64Url(base64Url: string): Uint8Array;
 
 #### transformBase64ToBase64Url(base64: string): string;
 
-```
+```typescript
 /**
  * Transforms a Base64 representation to Base64URL.
  * Symmetric to @member transformBase64UrlToBase64.
@@ -339,7 +339,7 @@ transformBase64ToBase64Url(base64: string): string;
 
 #### transformBase64UrlToBase64(base64Url: string): string;
 
-```
+```typescript
 /**
  * Transforms a Base64URL representation to Base64.
  * Symmetric to @member transformBase64ToBase64Url.
