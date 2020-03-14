@@ -3,47 +3,55 @@ import { DefaultBinaryConverter } from '../src/converters/defaultBinaryConverter
 
 const defaultBinaryConverterInstance = new DefaultBinaryConverter();
 
-const testVector = {
-    bytes: Uint8Array.from([
-        0,
-        56,
-        47,
-        243,
-        153,
-        145,
-        7,
-        169,
-        136,
-        165,
-        188,
-        112,
-        15,
-        111,
-        18,
-        249,
-        58,
-        240,
-        158,
-        39,
-        151,
-        248,
-        115,
-        93,
-        4,
-        109,
-        229,
-        170,
-        90,
-        179,
-        254,
-        253,
-        254,
-        255,
-        255,
-    ]),
-    hex: '00382ff3999107a988a5bc700f6f12f93af09e2797f8735d046de5aa5ab3fefdfeffff',
-    base64: 'ADgv85mRB6mIpbxwD28S+TrwnieX+HNdBG3lqlqz/v3+//8=',
-    base64url: 'ADgv85mRB6mIpbxwD28S-TrwnieX-HNdBG3lqlqz_v3-__8',
+const testVectors = {
+    default: {
+        bytes: Uint8Array.from([
+            0,
+            56,
+            47,
+            243,
+            153,
+            145,
+            7,
+            169,
+            136,
+            165,
+            188,
+            112,
+            15,
+            111,
+            18,
+            249,
+            58,
+            240,
+            158,
+            39,
+            151,
+            248,
+            115,
+            93,
+            4,
+            109,
+            229,
+            170,
+            90,
+            179,
+            254,
+            253,
+            254,
+            255,
+            255,
+        ]),
+        hex: '00382ff3999107a988a5bc700f6f12f93af09e2797f8735d046de5aa5ab3fefdfeffff',
+        base64: 'ADgv85mRB6mIpbxwD28S+TrwnieX+HNdBG3lqlqz/v3+//8=',
+        base64url: 'ADgv85mRB6mIpbxwD28S-TrwnieX-HNdBG3lqlqz_v3-__8',
+    },
+    empty: {
+        bytes: Uint8Array.from([]),
+        hex: '',
+        base64: '',
+        base64url: '',
+    },
 };
 
 describe('DefaultBinaryConverter', () => {
@@ -81,22 +89,34 @@ describe('DefaultBinaryConverter', () => {
 
     describe('encodeToHex', () => {
         it('should correctly encode a binary representation', () => {
-            const hex = defaultBinaryConverterInstance.encodeToHex(testVector.bytes);
-            const expected = testVector.hex;
+            const hex = defaultBinaryConverterInstance.encodeToHex(testVectors.default.bytes);
+            const expected = testVectors.default.hex;
+            expect(hex).to.equal(expected);
+        });
+
+        it('should correctly encode an empty binary representation', () => {
+            const hex = defaultBinaryConverterInstance.encodeToHex(testVectors.empty.bytes);
+            const expected = testVectors.empty.hex;
             expect(hex).to.equal(expected);
         });
     });
 
     describe('decodeFromHex', () => {
         it('should correctly decode a binary representation', () => {
-            const bytes = defaultBinaryConverterInstance.decodeFromHex(testVector.hex);
-            const expected = testVector.bytes;
+            const bytes = defaultBinaryConverterInstance.decodeFromHex(testVectors.default.hex);
+            const expected = testVectors.default.bytes;
             expect(bytes).to.deep.equal(expected);
         });
 
         it('should correctly decode a binary representation from an unpadded hex', () => {
-            const bytes = defaultBinaryConverterInstance.decodeFromHex(testVector.hex.substring(1));
-            const expected = testVector.bytes;
+            const bytes = defaultBinaryConverterInstance.decodeFromHex(testVectors.default.hex.substring(1));
+            const expected = testVectors.default.bytes;
+            expect(bytes).to.deep.equal(expected);
+        });
+
+        it('should correctly decode a binary representation from an empty hex', () => {
+            const bytes = defaultBinaryConverterInstance.decodeFromHex(testVectors.empty.hex);
+            const expected = testVectors.empty.bytes;
             expect(bytes).to.deep.equal(expected);
         });
 
@@ -111,16 +131,28 @@ describe('DefaultBinaryConverter', () => {
 
     describe('encodeToBase64', () => {
         it('should correctly encode a binary representation', () => {
-            const base64 = defaultBinaryConverterInstance.encodeToBase64(testVector.bytes);
-            const expected = testVector.base64;
+            const base64 = defaultBinaryConverterInstance.encodeToBase64(testVectors.default.bytes);
+            const expected = testVectors.default.base64;
+            expect(base64).to.equal(expected);
+        });
+
+        it('should correctly encode an empty binary representation', () => {
+            const base64 = defaultBinaryConverterInstance.encodeToBase64(testVectors.empty.bytes);
+            const expected = testVectors.empty.base64;
             expect(base64).to.equal(expected);
         });
     });
 
     describe('decodeFromBase64', () => {
         it('should correctly decode a binary representation', () => {
-            const bytes = defaultBinaryConverterInstance.decodeFromBase64(testVector.base64);
-            const expected = testVector.bytes;
+            const bytes = defaultBinaryConverterInstance.decodeFromBase64(testVectors.default.base64);
+            const expected = testVectors.default.bytes;
+            expect(bytes).to.deep.equal(expected);
+        });
+
+        it('should correctly decode an empty binary representation', () => {
+            const bytes = defaultBinaryConverterInstance.decodeFromBase64(testVectors.empty.base64);
+            const expected = testVectors.empty.bytes;
             expect(bytes).to.deep.equal(expected);
         });
 
@@ -152,16 +184,28 @@ describe('DefaultBinaryConverter', () => {
 
     describe('encodeToBase64Url', () => {
         it('should correctly encode a binary representation', () => {
-            const base64url = defaultBinaryConverterInstance.encodeToBase64Url(testVector.bytes);
-            const expected = testVector.base64url;
+            const base64url = defaultBinaryConverterInstance.encodeToBase64Url(testVectors.default.bytes);
+            const expected = testVectors.default.base64url;
+            expect(base64url).to.equal(expected);
+        });
+
+        it('should correctly encode an empty binary representation', () => {
+            const base64url = defaultBinaryConverterInstance.encodeToBase64Url(testVectors.empty.bytes);
+            const expected = testVectors.empty.base64url;
             expect(base64url).to.equal(expected);
         });
     });
 
     describe('decodeFromBase64Url', () => {
         it('should correctly decode a binary representation', () => {
-            const bytes = defaultBinaryConverterInstance.decodeFromBase64Url(testVector.base64url);
-            const expected = testVector.bytes;
+            const bytes = defaultBinaryConverterInstance.decodeFromBase64Url(testVectors.default.base64url);
+            const expected = testVectors.default.bytes;
+            expect(bytes).to.deep.equal(expected);
+        });
+
+        it('should correctly decode an empty binary representation', () => {
+            const bytes = defaultBinaryConverterInstance.decodeFromBase64Url(testVectors.empty.base64url);
+            const expected = testVectors.empty.bytes;
             expect(bytes).to.deep.equal(expected);
         });
     });

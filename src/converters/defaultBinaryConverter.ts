@@ -19,7 +19,11 @@ export class DefaultBinaryConverter implements BinaryConverter {
      * Does not throw.
      */
     public encodeToHex(bytes: Uint8Array): string {
-        return Array.from(bytes, b => b.toString(16).padStart(2, '0')).join('');
+        let hex = '';
+        for (const b of bytes) {
+            hex += b.toString(16).padStart(2, '0');
+        }
+        return hex;
     }
 
     /**
@@ -27,14 +31,14 @@ export class DefaultBinaryConverter implements BinaryConverter {
      * Throws if decoding is unsuccessful.
      */
     public decodeFromHex(hex: string): Uint8Array {
+        if (!/^[a-f0-9]*$/iu.test(hex)) {
+            throw new Error(DefaultBinaryConverter.ERROR_CODES.HEX_DECODE_ERROR);
+        }
         const paddedHex = hex.length % 2 === 1 ? `0${hex}` : hex;
-        const byteLength = paddedHex.length / 2;
-        const bytes = new Uint8Array(byteLength);
-        for (let bi = 0, hi = 0; bi < byteLength; bi++, hi += 2) {
+        const paddedHexLength = paddedHex.length;
+        const bytes = new Uint8Array(paddedHexLength / 2);
+        for (let hi = 0, bi = 0; hi < paddedHexLength; hi += 2, bi++) {
             const doubleHexChar = paddedHex.substring(hi, hi + 2);
-            if (!/[a-fA-F0-9]{2}/u.test(doubleHexChar)) {
-                throw new Error(DefaultBinaryConverter.ERROR_CODES.HEX_DECODE_ERROR);
-            }
             bytes[bi] = parseInt(doubleHexChar, 16);
         }
         return bytes;
