@@ -48,8 +48,9 @@ const testVector = {
 
 describe('DefaultBinaryConverter', () => {
     before(() => {
+        // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
         // @ts-ignore
-        global.btoa = (string: string) => {
+        global.btoa = (string: string): string => {
             for (let i = 0; i < string.length; i++) {
                 if (string.charCodeAt(i) > 255) {
                     throw new Error();
@@ -58,9 +59,10 @@ describe('DefaultBinaryConverter', () => {
             return Buffer.from(string, 'binary').toString('base64');
         };
 
+        // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
         // @ts-ignore
-        global.atob = (base64: string) => {
-            if (!/^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$/.test(base64)) {
+        global.atob = (base64: string): string => {
+            if (!/^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$/u.test(base64)) {
                 throw new Error();
             }
             return Buffer.from(base64, 'base64').toString('binary');
@@ -68,9 +70,11 @@ describe('DefaultBinaryConverter', () => {
     });
 
     after(() => {
+        // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
         // @ts-ignore
         global.atob = undefined;
 
+        // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
         // @ts-ignore
         global.btoa = undefined;
     });
