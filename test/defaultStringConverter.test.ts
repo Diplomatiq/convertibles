@@ -243,6 +243,12 @@ const testVectors = {
         base64: 'RGnMqHBsb8yLbWHMgHRpcSBBzIogJiBBzIogaXMgZWZmZWN0aXZlLg==',
         base64url: 'RGnMqHBsb8yLbWHMgHRpcSBBzIogJiBBzIogaXMgZWZmZWN0aXZlLg',
     },
+    empty: {
+        string: '',
+        bytes: Uint8Array.from([]),
+        base64: '',
+        base64url: '',
+    },
 };
 
 describe('DefaultStringConverter', () => {
@@ -314,6 +320,12 @@ describe('DefaultStringConverter', () => {
             const expected = testVectors.unicodeNfkd.bytes;
             expect(bytes).to.deep.equal(expected);
         });
+
+        it('should correctly encode an empty string', () => {
+            const bytes = defaultStringConverterInstance.encodeToBytes(testVectors.empty.string);
+            const expected = testVectors.empty.bytes;
+            expect(bytes).to.deep.equal(expected);
+        });
     });
 
     describe('decodeFromBytes', () => {
@@ -350,6 +362,12 @@ describe('DefaultStringConverter', () => {
         it('should correctly decode a Unicode string (NFKD)', () => {
             const string = defaultStringConverterInstance.decodeFromBytes(testVectors.unicodeNfkd.bytes);
             const expected = testVectors.unicodeNfkd.string;
+            expect(string).to.equal(expected);
+        });
+
+        it('should correctly decode an empty string', () => {
+            const string = defaultStringConverterInstance.decodeFromBytes(testVectors.empty.bytes);
+            const expected = testVectors.empty.string;
             expect(string).to.equal(expected);
         });
 
@@ -399,6 +417,12 @@ describe('DefaultStringConverter', () => {
             const expected = testVectors.unicodeNfkd.base64;
             expect(base64).to.equal(expected);
         });
+
+        it('should correctly encode an empty string', () => {
+            const base64 = defaultStringConverterInstance.encodeToBase64(testVectors.empty.string);
+            const expected = testVectors.empty.base64;
+            expect(base64).to.equal(expected);
+        });
     });
 
     describe('decodeFromBase64', () => {
@@ -435,6 +459,12 @@ describe('DefaultStringConverter', () => {
         it('should correctly encode a Unicode string (NFKD)', () => {
             const string = defaultStringConverterInstance.decodeFromBase64(testVectors.unicodeNfkd.base64);
             const expected = testVectors.unicodeNfkd.string;
+            expect(string).to.equal(expected);
+        });
+
+        it('should correctly encode an empty string', () => {
+            const string = defaultStringConverterInstance.decodeFromBase64(testVectors.empty.base64);
+            const expected = testVectors.empty.string;
             expect(string).to.equal(expected);
         });
 
@@ -500,6 +530,12 @@ describe('DefaultStringConverter', () => {
             const expected = testVectors.unicodeNfkd.base64url;
             expect(base64).to.equal(expected);
         });
+
+        it('should correctly encode an empty string', () => {
+            const base64 = defaultStringConverterInstance.encodeToBase64Url(testVectors.empty.string);
+            const expected = testVectors.empty.base64url;
+            expect(base64).to.equal(expected);
+        });
     });
 
     describe('decodeFromBase64Url', () => {
@@ -536,6 +572,12 @@ describe('DefaultStringConverter', () => {
         it('should correctly decode a Unicode string (NFKD)', () => {
             const string = defaultStringConverterInstance.decodeFromBase64Url(testVectors.unicodeNfkd.base64url);
             const expected = testVectors.unicodeNfkd.string;
+            expect(string).to.equal(expected);
+        });
+
+        it('should correctly decode an empty string', () => {
+            const string = defaultStringConverterInstance.decodeFromBase64Url(testVectors.empty.base64url);
+            const expected = testVectors.empty.string;
             expect(string).to.equal(expected);
         });
     });
