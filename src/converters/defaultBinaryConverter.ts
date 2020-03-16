@@ -60,7 +60,7 @@ export class DefaultBinaryConverter implements BinaryConverter {
     public decodeFromBase64(base64: string): Uint8Array {
         try {
             const asBinaryString = atob(base64);
-            return Uint8Array.from(asBinaryString, (_, i) => asBinaryString.charCodeAt(i));
+            return Uint8Array.from(asBinaryString, (_, i): number => asBinaryString.charCodeAt(i));
         } catch (e) {
             throw new Error(DefaultBinaryConverter.ERROR_CODES.BASE64_DECODE_ERROR);
         }
