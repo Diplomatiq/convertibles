@@ -54,8 +54,8 @@ const testVectors = {
     },
 };
 
-describe('DefaultBinaryConverter', () => {
-    before(() => {
+describe('DefaultBinaryConverter', (): void => {
+    before((): void => {
         // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
         // @ts-ignore
         global.btoa = (string: string): string => {
@@ -77,7 +77,7 @@ describe('DefaultBinaryConverter', () => {
         };
     });
 
-    after(() => {
+    after((): void => {
         // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
         // @ts-ignore
         global.atob = undefined;
@@ -87,40 +87,40 @@ describe('DefaultBinaryConverter', () => {
         global.btoa = undefined;
     });
 
-    describe('encodeToHex', () => {
-        it('should correctly encode a binary representation', () => {
+    describe('encodeToHex', (): void => {
+        it('should correctly encode a binary representation', (): void => {
             const hex = defaultBinaryConverterInstance.encodeToHex(testVectors.default.bytes);
             const expected = testVectors.default.hex;
             expect(hex).to.equal(expected);
         });
 
-        it('should correctly encode an empty binary representation', () => {
+        it('should correctly encode an empty binary representation', (): void => {
             const hex = defaultBinaryConverterInstance.encodeToHex(testVectors.empty.bytes);
             const expected = testVectors.empty.hex;
             expect(hex).to.equal(expected);
         });
     });
 
-    describe('decodeFromHex', () => {
-        it('should correctly decode a binary representation', () => {
+    describe('decodeFromHex', (): void => {
+        it('should correctly decode a binary representation', (): void => {
             const bytes = defaultBinaryConverterInstance.decodeFromHex(testVectors.default.hex);
             const expected = testVectors.default.bytes;
             expect(bytes).to.deep.equal(expected);
         });
 
-        it('should correctly decode a binary representation from an unpadded hex', () => {
+        it('should correctly decode a binary representation from an unpadded hex', (): void => {
             const bytes = defaultBinaryConverterInstance.decodeFromHex(testVectors.default.hex.substring(1));
             const expected = testVectors.default.bytes;
             expect(bytes).to.deep.equal(expected);
         });
 
-        it('should correctly decode a binary representation from an empty hex', () => {
+        it('should correctly decode a binary representation from an empty hex', (): void => {
             const bytes = defaultBinaryConverterInstance.decodeFromHex(testVectors.empty.hex);
             const expected = testVectors.empty.bytes;
             expect(bytes).to.deep.equal(expected);
         });
 
-        it('should throw error on invalid hexadecimal strings', () => {
+        it('should throw error on invalid hexadecimal strings', (): void => {
             try {
                 defaultBinaryConverterInstance.decodeFromHex('0x');
             } catch (e) {
@@ -129,34 +129,34 @@ describe('DefaultBinaryConverter', () => {
         });
     });
 
-    describe('encodeToBase64', () => {
-        it('should correctly encode a binary representation', () => {
+    describe('encodeToBase64', (): void => {
+        it('should correctly encode a binary representation', (): void => {
             const base64 = defaultBinaryConverterInstance.encodeToBase64(testVectors.default.bytes);
             const expected = testVectors.default.base64;
             expect(base64).to.equal(expected);
         });
 
-        it('should correctly encode an empty binary representation', () => {
+        it('should correctly encode an empty binary representation', (): void => {
             const base64 = defaultBinaryConverterInstance.encodeToBase64(testVectors.empty.bytes);
             const expected = testVectors.empty.base64;
             expect(base64).to.equal(expected);
         });
     });
 
-    describe('decodeFromBase64', () => {
-        it('should correctly decode a binary representation', () => {
+    describe('decodeFromBase64', (): void => {
+        it('should correctly decode a binary representation', (): void => {
             const bytes = defaultBinaryConverterInstance.decodeFromBase64(testVectors.default.base64);
             const expected = testVectors.default.bytes;
             expect(bytes).to.deep.equal(expected);
         });
 
-        it('should correctly decode an empty binary representation', () => {
+        it('should correctly decode an empty binary representation', (): void => {
             const bytes = defaultBinaryConverterInstance.decodeFromBase64(testVectors.empty.base64);
             const expected = testVectors.empty.bytes;
             expect(bytes).to.deep.equal(expected);
         });
 
-        it('should throw error on invalid Base64 strings', () => {
+        it('should throw error on invalid Base64 strings', (): void => {
             try {
                 defaultBinaryConverterInstance.decodeFromBase64('ŐO1wbPZt4XRpcSBpcyBjb/xsLg==');
                 expect.fail('did not throw');
@@ -165,7 +165,7 @@ describe('DefaultBinaryConverter', () => {
             }
         });
 
-        it('should throw error on Base64 strings with invalid padding', () => {
+        it('should throw error on Base64 strings with invalid padding', (): void => {
             try {
                 defaultBinaryConverterInstance.decodeFromBase64('RO1wbPZt4XRpcSBpcyBjb/xsLg=');
                 expect.fail('did not throw');
@@ -182,28 +182,28 @@ describe('DefaultBinaryConverter', () => {
         });
     });
 
-    describe('encodeToBase64Url', () => {
-        it('should correctly encode a binary representation', () => {
+    describe('encodeToBase64Url', (): void => {
+        it('should correctly encode a binary representation', (): void => {
             const base64url = defaultBinaryConverterInstance.encodeToBase64Url(testVectors.default.bytes);
             const expected = testVectors.default.base64url;
             expect(base64url).to.equal(expected);
         });
 
-        it('should correctly encode an empty binary representation', () => {
+        it('should correctly encode an empty binary representation', (): void => {
             const base64url = defaultBinaryConverterInstance.encodeToBase64Url(testVectors.empty.bytes);
             const expected = testVectors.empty.base64url;
             expect(base64url).to.equal(expected);
         });
     });
 
-    describe('decodeFromBase64Url', () => {
-        it('should correctly decode a binary representation', () => {
+    describe('decodeFromBase64Url', (): void => {
+        it('should correctly decode a binary representation', (): void => {
             const bytes = defaultBinaryConverterInstance.decodeFromBase64Url(testVectors.default.base64url);
             const expected = testVectors.default.bytes;
             expect(bytes).to.deep.equal(expected);
         });
 
-        it('should correctly decode an empty binary representation', () => {
+        it('should correctly decode an empty binary representation', (): void => {
             const bytes = defaultBinaryConverterInstance.decodeFromBase64Url(testVectors.empty.base64url);
             const expected = testVectors.empty.bytes;
             expect(bytes).to.deep.equal(expected);
