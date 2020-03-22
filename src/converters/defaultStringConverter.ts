@@ -7,8 +7,8 @@ import { DefaultBase64UrlTransformer } from '../transformers/defaultBase64UrlTra
 import { DefaultBinaryConverter } from './defaultBinaryConverter';
 
 enum StringConverterErrorCodes {
-    UTF8_DECODE_ERROR = 'UTF-8 decode error',
-    BASE64_DECODE_ERROR = 'Base64 decode error',
+    Utf8DecodeError = 'UTF-8 decode error',
+    Base64DecodeError = 'Base64 decode error',
 }
 
 export class DefaultStringConverter implements StringConverter {
@@ -39,7 +39,7 @@ export class DefaultStringConverter implements StringConverter {
         try {
             return this.utf8Decoder.decode(bytes);
         } catch (e) {
-            throw new Error(DefaultStringConverter.ERROR_CODES.UTF8_DECODE_ERROR);
+            throw new Error(DefaultStringConverter.ERROR_CODES.Utf8DecodeError);
         }
     }
 
@@ -84,7 +84,7 @@ export class DefaultStringConverter implements StringConverter {
             const asBytes = this.binaryConverter.decodeFromBase64(base64);
             return this.decodeFromBytes(asBytes);
         } catch (e) {
-            throw new Error(DefaultStringConverter.ERROR_CODES.BASE64_DECODE_ERROR);
+            throw new Error(DefaultStringConverter.ERROR_CODES.Base64DecodeError);
         }
     }
 
