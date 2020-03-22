@@ -3,8 +3,8 @@ import { BinaryConverter } from '../interfaces/binaryConverter';
 import { DefaultBase64UrlTransformer } from '../transformers/defaultBase64UrlTransformer';
 
 enum BinaryConverterErrorCodes {
-    BASE64_DECODE_ERROR = 'Base64 decode error',
-    HEX_DECODE_ERROR = 'Hex decode error',
+    Base64DecodeError = 'Base64 decode error',
+    HexDecodeError = 'Hex decode error',
 }
 
 export class DefaultBinaryConverter implements BinaryConverter {
@@ -32,7 +32,7 @@ export class DefaultBinaryConverter implements BinaryConverter {
      */
     public decodeFromHex(hex: string): Uint8Array {
         if (!/^[a-f0-9]*$/iu.test(hex)) {
-            throw new Error(DefaultBinaryConverter.ERROR_CODES.HEX_DECODE_ERROR);
+            throw new Error(DefaultBinaryConverter.ERROR_CODES.HexDecodeError);
         }
         const paddedHex = hex.length % 2 === 1 ? `0${hex}` : hex;
         const paddedHexLength = paddedHex.length;
@@ -62,7 +62,7 @@ export class DefaultBinaryConverter implements BinaryConverter {
             const asBinaryString = atob(base64);
             return Uint8Array.from(asBinaryString, (_, i): number => asBinaryString.charCodeAt(i));
         } catch (e) {
-            throw new Error(DefaultBinaryConverter.ERROR_CODES.BASE64_DECODE_ERROR);
+            throw new Error(DefaultBinaryConverter.ERROR_CODES.Base64DecodeError);
         }
     }
 
