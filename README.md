@@ -1,4 +1,6 @@
-# convertibles
+<p align="center">
+  <img src="logo.png" width="500px">
+</p>
 
 TypeScript utility library to convert values between textual and binary representation.
 
