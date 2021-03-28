@@ -323,7 +323,7 @@ transformBase64UrlToBase64(base64Url: string): string;
 
 ## Development
 
-See [CONTRIBUTING.md](https://github.com/Diplomatiq/convertibles/blob/develop/CONTRIBUTING.md) for details.
+See [CONTRIBUTING.md](https://github.com/Diplomatiq/convertibles/blob/main/CONTRIBUTING.md) for details.
 
 ---
 
