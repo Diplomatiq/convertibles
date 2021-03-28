@@ -21,14 +21,12 @@ TypeScript utility library to convert values between textual and binary represen
 	<img src="https://img.shields.io/npm/v/@diplomatiq/convertibles.svg" alt="latest released version on npm">
 </a>
 
-<a href="https://github.com/Diplomatiq/convertibles/blob/master/LICENSE" target="_blank" style="text-decoration: none;">
+<a href="https://github.com/Diplomatiq/convertibles/blob/main/LICENSE" target="_blank" style="text-decoration: none;">
 	<img src="https://img.shields.io/npm/l/@diplomatiq/convertibles.svg" alt="license">
 </a>
-</p>
 
-<p>
-<a href="https://gitter.im/Diplomatiq/convertibles" target="_blank" style="text-decoration: none;">
-	<img src="https://badges.gitter.im/Diplomatiq/convertibles.svg" alt="Gitter">
+<a href="https://github.com/Diplomatiq/crypto-random/pulls" target="_blank" style="text-decoration: none;">
+  <img src="https://api.dependabot.com/badges/status?host=github&repo=Diplomatiq/crypto-random" alt="Dependabot">
 </a>
 </p>
 
