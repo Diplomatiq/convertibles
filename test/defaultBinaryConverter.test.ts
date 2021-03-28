@@ -56,7 +56,7 @@ const testVectors = {
 
 describe('DefaultBinaryConverter', (): void => {
     before((): void => {
-        // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
         global.btoa = (string: string): string => {
             for (let i = 0; i < string.length; i++) {
@@ -67,7 +67,7 @@ describe('DefaultBinaryConverter', (): void => {
             return Buffer.from(string, 'binary').toString('base64');
         };
 
-        // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
         global.atob = (base64: string): string => {
             if (!/^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$/u.test(base64)) {
@@ -78,11 +78,11 @@ describe('DefaultBinaryConverter', (): void => {
     });
 
     after((): void => {
-        // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
         global.atob = undefined;
 
-        // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
         global.btoa = undefined;
     });
@@ -124,7 +124,11 @@ describe('DefaultBinaryConverter', (): void => {
             try {
                 defaultBinaryConverterInstance.decodeFromHex('0x');
             } catch (e) {
-                expect(e.message).to.equal('Hex decode error');
+                if (e instanceof Error) {
+                    expect(e.message).to.equal('Hex decode error');
+                } else {
+                    expect.fail('exception is not of Error type');
+                }
             }
         });
     });
@@ -161,7 +165,11 @@ describe('DefaultBinaryConverter', (): void => {
                 defaultBinaryConverterInstance.decodeFromBase64('ŐO1wbPZt4XRpcSBpcyBjb/xsLg==');
                 expect.fail('did not throw');
             } catch (e) {
-                expect(e.message).to.be.equal('Base64 decode error');
+                if (e instanceof Error) {
+                    expect(e.message).to.be.equal('Base64 decode error');
+                } else {
+                    expect.fail('exception is not of Error type');
+                }
             }
         });
 
@@ -170,14 +178,22 @@ describe('DefaultBinaryConverter', (): void => {
                 defaultBinaryConverterInstance.decodeFromBase64('RO1wbPZt4XRpcSBpcyBjb/xsLg=');
                 expect.fail('did not throw');
             } catch (e) {
-                expect(e.message).to.be.equal('Base64 decode error');
+                if (e instanceof Error) {
+                    expect(e.message).to.be.equal('Base64 decode error');
+                } else {
+                    expect.fail('exception is not of Error type');
+                }
             }
 
             try {
                 defaultBinaryConverterInstance.decodeFromBase64('RO1wbPZt4XRpcSBpcyBjb/xsLg');
                 expect.fail('did not throw');
             } catch (e) {
-                expect(e.message).to.be.equal('Base64 decode error');
+                if (e instanceof Error) {
+                    expect(e.message).to.be.equal('Base64 decode error');
+                } else {
+                    expect.fail('exception is not of Error type');
+                }
             }
         });
     });
