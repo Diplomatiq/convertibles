@@ -253,7 +253,7 @@ const testVectors = {
 
 describe('DefaultStringConverter', (): void => {
     before((): void => {
-        // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
         global.btoa = (string: string): string => {
             for (let i = 0; i < string.length; i++) {
@@ -264,7 +264,7 @@ describe('DefaultStringConverter', (): void => {
             return Buffer.from(string, 'binary').toString('base64');
         };
 
-        // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
         global.atob = (base64: string): string => {
             if (!/^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$/u.test(base64)) {
@@ -275,11 +275,11 @@ describe('DefaultStringConverter', (): void => {
     });
 
     after((): void => {
-        // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
         global.atob = undefined;
 
-        // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
         global.btoa = undefined;
     });
@@ -376,7 +376,11 @@ describe('DefaultStringConverter', (): void => {
                 defaultStringConverterInstance.decodeFromBytes(Uint8Array.from([0xed, 0xa0, 0x80]));
                 expect.fail('did not throw');
             } catch (e) {
-                expect(e.message).to.equal('UTF-8 decode error');
+                if (e instanceof Error) {
+                    expect(e.message).to.equal('UTF-8 decode error');
+                } else {
+                    expect.fail('exception is not of Error type');
+                }
             }
         });
     });
@@ -473,7 +477,11 @@ describe('DefaultStringConverter', (): void => {
                 defaultStringConverterInstance.decodeFromBase64('ŐO1wbPZt4XRpcSBpcyBjb/xsLg==');
                 expect.fail('did not throw');
             } catch (e) {
-                expect(e.message).to.be.equal('Base64 decode error');
+                if (e instanceof Error) {
+                    expect(e.message).to.be.equal('Base64 decode error');
+                } else {
+                    expect.fail('exception is not of Error type');
+                }
             }
         });
 
@@ -482,14 +490,22 @@ describe('DefaultStringConverter', (): void => {
                 defaultStringConverterInstance.decodeFromBase64('RO1wbPZt4XRpcSBpcyBjb/xsLg=');
                 expect.fail('did not throw');
             } catch (e) {
-                expect(e.message).to.be.equal('Base64 decode error');
+                if (e instanceof Error) {
+                    expect(e.message).to.be.equal('Base64 decode error');
+                } else {
+                    expect.fail('exception is not of Error type');
+                }
             }
 
             try {
                 defaultStringConverterInstance.decodeFromBase64('RO1wbPZt4XRpcSBpcyBjb/xsLg');
                 expect.fail('did not throw');
             } catch (e) {
-                expect(e.message).to.be.equal('Base64 decode error');
+                if (e instanceof Error) {
+                    expect(e.message).to.be.equal('Base64 decode error');
+                } else {
+                    expect.fail('exception is not of Error type');
+                }
             }
         });
     });

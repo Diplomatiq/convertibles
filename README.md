@@ -27,32 +27,6 @@ TypeScript utility library to convert values between textual and binary represen
 </p>
 
 <p>
-<a href="https://sonarcloud.io/dashboard?id=Diplomatiq_convertibles" target="_blank" style="text-decoration: none;">
-	<img src="https://sonarcloud.io/api/project_badges/measure?project=Diplomatiq_convertibles&metric=alert_status" alt="Quality Gate">
-</a>
-
-<a href="https://sonarcloud.io/dashboard?id=Diplomatiq_convertibles" target="_blank" style="text-decoration: none;">
-	<img src="https://sonarcloud.io/api/project_badges/measure?project=Diplomatiq_convertibles&metric=coverage" alt="Coverage">
-</a>
-
-<a href="https://sonarcloud.io/dashboard?id=Diplomatiq_convertibles" target="_blank" style="text-decoration: none;">
-	<img src="https://sonarcloud.io/api/project_badges/measure?project=Diplomatiq_convertibles&metric=sqale_rating" alt="Maintainability Rating">
-</a>
-
-<a href="https://sonarcloud.io/dashboard?id=Diplomatiq_convertibles" target="_blank" style="text-decoration: none;">
-	<img src="https://sonarcloud.io/api/project_badges/measure?project=Diplomatiq_convertibles&metric=reliability_rating" alt="Reliability Rating">
-</a>
-
-<a href="https://sonarcloud.io/dashboard?id=Diplomatiq_convertibles" target="_blank" style="text-decoration: none;">
-	<img src="https://sonarcloud.io/api/project_badges/measure?project=Diplomatiq_convertibles&metric=security_rating" alt="Security Rating">
-</a>
-
-<a href="https://github.com/Diplomatiq/convertibles/pulls" target="_blank" style="text-decoration: none;">
-	<img src="https://api.dependabot.com/badges/status?host=github&repo=Diplomatiq/convertibles" alt="Dependabot">
-</a>
-</p>
-
-<p>
 <a href="https://gitter.im/Diplomatiq/convertibles" target="_blank" style="text-decoration: none;">
 	<img src="https://badges.gitter.im/Diplomatiq/convertibles.svg" alt="Gitter">
 </a>

@@ -6,10 +6,7 @@ export class DefaultBase64UrlTransformer implements Base64UrlTransformer {
      * Symmetric to @member transformBase64UrlToBase64.
      */
     public transformBase64ToBase64Url(base64: string): string {
-        return base64
-            .replace(/\+/gu, '-')
-            .replace(/\//gu, '_')
-            .replace(/[=]/gu, '');
+        return base64.replace(/\+/gu, '-').replace(/\//gu, '_').replace(/[=]/gu, '');
     }
 
     /**
